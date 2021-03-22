@@ -5,7 +5,7 @@ phases:
   install:
     commands:
       - echo Entered the install phase..
-      - apt-get install -y git
+      - yum install -y git
       - git clone https://github.com/sanjaysingh07/ml-training.git
   pre_build:
     commands:
