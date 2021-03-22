@@ -15,7 +15,6 @@ phases:
       - aws --version
       - image=arima_training_sample
       - account=$(aws sts get-caller-identity --query Account --output text)
-      - region=$(aws configure get region)
       - region=${region:-ap-south-1}
       - fullname="${account}.dkr.ecr.${region}.amazonaws.com/${image}:latest"
       - aws ecr describe-repositories --repository-names "${image}" > /dev/null 2>&1
