@@ -9,6 +9,7 @@ phases:
       - git clone https://github.com/sanjaysingh07/ml-training.git
   pre_build:
     commands:
+      - cd ml-training
       - chmod +x arima_model/train
       - echo Logging in to Amazon ECR...
       - aws --version
