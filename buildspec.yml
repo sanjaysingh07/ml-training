@@ -1,0 +1,27 @@
+version: 0.2
+
+
+phases:
+  pre_build:
+    commands:
+      - chmod +x arima_model/train
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - image="arima_training_sample"
+      - account=$(aws sts get-caller-identity --query Account --output text)
+      - region=$(aws configure get region)
+      - region=${region:-ap-south-1}
+      - fullname="${account}.dkr.ecr.${region}.amazonaws.com/${image}:latest"
+      - aws ecr describe-repositories --repository-names "${image}" > /dev/null 2>&1
+      - aws ecr get-login-password --region "${region}" | docker login --username AWS --password-stdin "${account}".dkr.ecr."${region}".amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build  -t ${image} .
+      - docker tag ${image} ${fullname}
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push ${fullname}
