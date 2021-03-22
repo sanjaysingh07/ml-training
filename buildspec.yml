@@ -10,7 +10,8 @@ phases:
   pre_build:
     commands:
       - cd ml-training
-      - chmod +x arima_model/train
+      - ls -l
+      - chmod +x ml-training/arima_model/train
       - echo Logging in to Amazon ECR...
       - aws --version
       - image=arima_training_sample
