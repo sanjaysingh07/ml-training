@@ -11,7 +11,6 @@ phases:
     commands:
       - cd ml-training
       - ls -l
-      - chmod +x ml-training/arima_model/train
       - echo Logging in to Amazon ECR...
       - aws --version
       - image=arima_training_sample
