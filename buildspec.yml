@@ -7,7 +7,7 @@ phases:
       - chmod +x arima_model/train
       - echo Logging in to Amazon ECR...
       - aws --version
-      - image="arima_training_sample"
+      - image=arima_training_sample
       - account=$(aws sts get-caller-identity --query Account --output text)
       - region=$(aws configure get region)
       - region=${region:-ap-south-1}
