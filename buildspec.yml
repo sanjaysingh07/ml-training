@@ -22,10 +22,10 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - sudo docker build  -t ${image} .
-      - sudo docker tag ${image} ${fullname}
+      - docker build  -t ${image} .
+      - docker tag ${image} ${fullname}
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - sudo docker push ${fullname}
+      - docker push ${fullname}
